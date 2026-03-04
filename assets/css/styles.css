@@ -237,7 +237,8 @@ body {
   font-weight: 700;
 }
 
-.hero-image img {
+.hero-image img,
+.hero-image video {
   width: 100%;
   max-width: 360px;
   border-radius: 24px;
@@ -245,6 +246,10 @@ body {
   display: block;
   margin: 0 auto;
   object-fit: cover;
+}
+
+.hero-image video {
+  background: #0f172a;
 }
 
 .section {
@@ -581,24 +586,52 @@ body {
   text-decoration: underline;
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #bfdbfe;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .whatsapp-float {
   position: fixed;
   right: 16px;
   bottom: 16px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #25d366;
-  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
   z-index: 1200;
 }
 
 .whatsapp-float img {
-  width: 26px;
-  height: 26px;
+  width: 52px;
+  height: 52px;
+  transition: transform 0.18s ease-out;
+}
+
+.whatsapp-float:hover img {
+  transform: scale(1.06);
 }
 
 .section-cta {
@@ -672,6 +705,15 @@ a:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+/* Header: botón Agendar más compacto en móvil */
+@media (max-width: 767px) {
+  .header-inner .btn-primary {
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }
 
