@@ -5,12 +5,44 @@ document.addEventListener('DOMContentLoaded', function () {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Menú móvil
+  // Menú móvil (dropdown)
   var navToggle = document.getElementById('nav-toggle');
-  var body = document.body;
-  if (navToggle) {
-    navToggle.addEventListener('click', function () {
-      body.classList.toggle('nav-open');
+  var mainNav = document.getElementById('main-nav');
+
+  function closeNav() {
+    if (!mainNav || !navToggle) return;
+    mainNav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', function (event) {
+      event.stopPropagation();
+      var willOpen = !mainNav.classList.contains('is-open');
+      if (willOpen) {
+        mainNav.classList.add('is-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+      } else {
+        closeNav();
+      }
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', function (event) {
+      if (!mainNav.classList.contains('is-open')) return;
+      var target = event.target;
+      if (mainNav.contains(target) || navToggle.contains(target)) {
+        return;
+      }
+      closeNav();
+    });
+
+    // Cerrar al hacer clic en cualquier link del menú
+    var navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeNav();
+      });
     });
   }
 

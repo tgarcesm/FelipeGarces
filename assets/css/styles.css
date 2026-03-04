@@ -51,6 +51,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
+  position: relative;
 }
 
 .logo {
@@ -80,34 +81,51 @@ body {
 }
 
 .main-nav {
+  position: absolute;
+  top: 100%;
+  right: 16px;
   display: none;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+  padding: 8px 0;
+  min-width: 190px;
+  z-index: 1100;
+}
+
+.main-nav.is-open {
+  display: block;
 }
 
 .main-nav ul {
   list-style: none;
   display: flex;
-  gap: 18px;
+  flex-direction: column;
+  gap: 0;
   margin: 0;
   padding: 0;
 }
 
 .main-nav a {
+  display: block;
   text-decoration: none;
   color: var(--color-muted);
   font-size: 14px;
   font-weight: 500;
-  padding: 6px 0;
-  border-bottom: 2px solid transparent;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
+  padding: 9px 18px;
+  border-left: 3px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .main-nav a:hover {
   color: var(--color-primary);
+  background-color: #f3f4ff;
 }
 
 .main-nav a.active {
   color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  background-color: #eff6ff;
 }
 
 .btn {
@@ -167,15 +185,6 @@ body {
   height: 2px;
   background-color: var(--color-text);
   border-radius: 999px;
-}
-
-.nav-open .main-nav {
-  display: block;
-}
-
-.nav-open .main-nav ul {
-  flex-direction: column;
-  padding: 12px 0 8px;
 }
 
 .hero {
@@ -672,7 +681,34 @@ a:hover {
   }
 
   .main-nav {
+    position: static;
     display: block;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 18px;
+  }
+
+  .main-nav a {
+    padding: 6px 0;
+    border-left: none;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+  }
+
+  .main-nav a:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+  }
+
+  .main-nav a.active {
+    border-bottom-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: transparent;
   }
 
   .nav-toggle {
